@@ -27,7 +27,7 @@ export default class build {
       }
     });
   }
-  
+
   loadPokeData(num, pokeCard) {
     const url = `https://pokeapi.co/api/v2/pokemon/${num + 1}`;
     const request = new XMLHttpRequest();
@@ -39,9 +39,6 @@ export default class build {
       const item = l_POKE_API.sprites.other.dream_world.front_default;
       const imgTag = document.createElement("img");
       imgTag.src = item;
-      imgTag.style.width = "100%";
-      imgTag.style.maxWidth = "22vw";
-      imgTag.style.height = "10vw";
       pokeCard[num].children[1].appendChild(imgTag);
     });
   }

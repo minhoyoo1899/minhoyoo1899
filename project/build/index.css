@@ -31,6 +31,13 @@
   width: 22vh;
 }
 
+.card_section>div:nth-of-type(2)>img {
+  width: 100%;
+  max-width: 22vw;
+  height: 10vw;
+}
+
+
 .card_section>div:nth-of-type(3) {
   width: 100%;
   display: flex;
