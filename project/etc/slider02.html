@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      align-content: center;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #root {
+      display: flex;
+      width: 90%;
+      height: 65%;
+    }
+
+    .poke_slide {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      align-content: center;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #l_arrow, #r_arrow {
+      width: 7%;
+      height: 21%;      
+    }
+
+    #l_arrow img, #r_arrow img{
+      width: 100%;
+    }
+
+    #l_arrow img{
+      transform: rotate(-90deg);
+    }
+
+    #r_arrow img{
+      transform: rotate(90deg);
+    }
+
+    #mainDiv {
+      width: 90%;
+      height: 100%;
+      /* background-color: aqua; */
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      justify-content: space-around;
+      align-items: center;
+      overflow-x: hidden;
+    }
+
+    #pokeList {
+      width: 80%;
+      height: 100%;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      align-content: center;
+      justify-content: space-around;
+      align-items: center;
+      overflow-x: hidden;
+    }
+
+    .card_section {
+      width: 37vh;
+      height: 80%;
+      /* background-color: blueviolet; */
+      background-image: url('../img/poke_card_mega.png');
+      background-size: cover;
+      display: flex;
+      flex-direction: column;
+      flex-wrap: nowrap;
+      align-content: center;
+      justify-content: flex-start;
+      align-items: center;
+      font-size: 94%;
+      min-width: 269px;
+      min-height: 384px;
+    }
+
+    .card_section div:nth-of-type(1) {
+      width: 100%;
+      height: 13%;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      align-content: center;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .card_section div:nth-of-type(2) {
+      width: 61.3%;
+      height: 20%;
+      font-size: 100%;
+    }
+
+    .card_section div:nth-of-type(3) {
+      width: 92%;
+      height: 30%;
+      margin: 52% 0% 0% 0%;
+      font-size: 100%;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      align-content: center;
+      justify-content: center;
+      align-items: baseline;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="root">
+    <div class="poke_slide">
+
+      <!-- l_arrow -->
+      <div id="l_arrow">        
+        <img src="../img/poke_arrow.png" alt="arrow imgage 화살표 이미지">
+      </div>
+
+      <div id="mainDiv">
+        <div id="pokeList">
+
+          <!-- card_section -->
+          <div class="card_section">
+
+            <!-- name -->
+            <div>
+              <div></div>
+            </div>
+
+            <!-- img -->
+            <div>
+            </div>
+
+            <!-- explain -->
+            <div>
+              <div>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div id="r_arrow">
+        <img src="../img/poke_arrow.png" alt="arrow imgage 화살표 이미지">
+      </div>
+    </div>
+  </div>
+  <script>
+    const root = document.getElementById('root');
+    const l_arrow = document.getElementById('l_arrow');
+    const r_arrow = document.getElementById('r_arrow');
+    const mainDiv = document.getElementById('mainDiv');
+    const pokeList = document.getElementById('pokeList');
+    const card_section = document.getElementsByClassName('card_section');
+    console.log(card_section);
+    console.dir(card_section);
+
+    function slider() {
+      let currentIdx = 0;
+      let count = 0;
+      function moveSlide(num) {
+        pokeList.style.transform = `translate3d(${-num * 3.5}%, 0px, 0px) rotateX(0deg) rotateY(${-num * 5}deg)`;
+      }
+
+      l_arrow.addEventListener('click', function () {
+        pokeList.style.transition = "ease .5s";
+        moveSlide(currentIdx + 1);
+        currentIdx++;
+      });
+
+      r_arrow.addEventListener('click', function () {
+        pokeList.style.transition = "ease .5s";
+        moveSlide(currentIdx - 1);
+        currentIdx--;
+      });
+    }
+    slider();
+
+
+    const loadPoDatSpecies = function (num, loop) {
+      const url = `https://pokeapi.co/api/v2/pokemon-species/${num}/`;
+      const request = new XMLHttpRequest();
+      console.log(request);
+      request.open("GET", url);
+      request.responseType = "json";
+      request.send();
+      request.addEventListener("load", () => {
+        const l_POKE_API = request.response;
+        JSON.parse(JSON.stringify(l_POKE_API));
+
+        for (let i = 0; l_POKE_API.names.length; i++) {
+          if (l_POKE_API.names[i].language.name === "ko") {
+            // console.log(l_POKE_API.names[i].name);
+            const name = l_POKE_API.names[i].name;
+            const id = l_POKE_API.id;
+            card_section[0].children[0].children[0].innerText = `No.${id} ${name}`;
+            break;
+          }
+        }
+
+        for (let i = 0; l_POKE_API.flavor_text_entries.length; i++) {
+          if (l_POKE_API.flavor_text_entries[i].language.name === "ko") {
+            //console.log(l_POKE_API.flavor_text_entries[i].flavor_text);
+            const expl = l_POKE_API.flavor_text_entries[i].flavor_text;
+            card_section[0].children[2].children[0].innerText = expl;
+            break;
+          }
+        }
+      });
+    };
+
+    const loadPokeData = function (num, loop) {
+      const url = `https://pokeapi.co/api/v2/pokemon/${num}`;
+      const request = new XMLHttpRequest();
+      request.open("GET", url);
+      request.responseType = "json";
+      request.send();
+      request.addEventListener("load", () => {
+        const l_POKE_API = request.response;
+        const item = l_POKE_API.sprites.other.dream_world.front_default;
+        const imgTag = document.createElement('img');
+        imgTag.src = item;
+        imgTag.style.width = "100%";
+        card_section[0].children[1].appendChild(imgTag);
+      });
+    };
+
+
+    loadPoDatSpecies(1);
+    loadPokeData(1);
+  </script>
+</body>
+
+</html>

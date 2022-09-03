@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+</head>
+
+<body>
+  <!-- 
+    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg" alt="">  
+  -->
+  <script>
+    const body = window.document.body;
+    const newDiv = document.createElement('div');
+    body.appendChild(newDiv);
+    //console.log(body);
+    //console.dir(body);
+    const root = body.children[1];
+    root.id = "root";
+    //console.log(root);
+  </script>
+
+  <script>
+    const loadPokeData = function (num, save) {
+      const url = `https://pokeapi.co/api/v2/pokemon/${num}`;
+      const request = new XMLHttpRequest();
+      request.open('GET', url);
+      request.responseType = 'json';
+      request.send();
+      request.addEventListener('load', () => {
+        const l_POKE_API = request.response;
+        save.push(l_POKE_API);
+        // return l_POKE_API;
+      });
+    }
+
+    const g_pokeDatArr = [];
+
+    // loadPokeData(100, G_pokeDatArr);
+    // console.log(G_pokeDatArr);
+
+    const loopSave = function (num) {
+      for (let i = 0; i <= num; i++) {
+        if (i === 0) {
+          continue;
+        } else {
+          loadPokeData([i], g_pokeDatArr);
+        }
+      }
+    }
+
+    loopSave(100);
+    console.log(g_pokeDatArr);
+
+    const g_PokeSpeciDat = [];
+    const text = [];
+    const loadPoDatSpecies = function (num, save) {
+      const url = `https://pokeapi.co/api/v2/pokemon-species/${num}/`;
+      const request = new XMLHttpRequest();
+      //console.log(request);
+      request.open('GET', url);
+      request.responseType = 'json';
+      request.send();
+      request.addEventListener('load', () => {
+        const l_POKE_API = request.response;
+        //g_PokeSpeciDat.push(l_POKE_API);
+        JSON.parse(JSON.stringify(l_POKE_API));        
+        console.log(l_POKE_API);
+
+        // console.log(l_POKE_API.flavor_text_entries);
+        // console.log(l_POKE_API.flavor_text_entries[23].flavor_text);
+        // console.log(l_POKE_API.flavor_text_entries[23].language.name);
+        // console.log(l_POKE_API.names[2].name);
+        // console.log(l_POKE_API.names[2].language.name);
+        // console.log(typeof(l_POKE_API.flavor_text_entries[23].language.name));
+        // console.log(typeof(l_POKE_API.names[2].language.name));
+        // text.push(l_POKE_API.flavor_text_entries[23].flavor_text);
+
+        for (let i = 0; l_POKE_API.names.length; i++) {
+          if (l_POKE_API.names[i].language.name === "ko") {
+            console.log(l_POKE_API.names[i].name);
+            break;
+          }
+
+        for (let i = 0; l_POKE_API.flavor_text_entries.length; i++) {
+          if (l_POKE_API.flavor_text_entries[i].language.name === "ko") {            
+            console.log(l_POKE_API.flavor_text_entries[i].flavor_text);
+            break;
+          }
+        }
+        }
+        // for(let i=0; l_POKE_API.names.length; i++) {
+        //   if(l_POKE_API.names[i].language.name === "ko") {
+        //     console.log(l_POKE_API.names[i].name);
+        //   }
+        // } 
+        // root.innerHTML = l_POKE_API.flavor_text_entries[23].flavor_text;
+        // console.log(text);        
+        // save.push(l_POKE_API);
+        // return l_POKE_API;
+      });
+    }
+
+    for (let i = 1; i <= 10; i++) {
+      loadPoDatSpecies([i], g_PokeSpeciDat);
+    }
+
+    // console.log("ccccc");
+    // console.log(g_PokeSpeciDat);
+    // console.log(g_PokeSpeciDat[0]);
+
+    // loadPoDatSpecies(1, g_PokeSpeciDat);
+    // loadPoDatSpecies(2, g_PokeSpeciDat);
+    //  console.log(text);
+    //  let dongi = function(a) {
+    //   console.log(a);
+    //  }
+
+    // setTimeout(dongi(), 20000, text[0]);
+    // g_PokeSpeciDat.push(1);
+    // g_PokeSpeciDat.push(2);
+    // console.log(g_PokeSpeciDat);
+    // console.log(g_PokeSpeciDat[0]);
+    // g_PokeSpeciDat.push(1);
+    // console.log(g_PokeSpeciDat);
+    // let arr = isArray(g_PokeSpeciDat);
+    // console.log(arr);
+
+    // console.log(typeof(g_PokeSpeciDat));
+
+    // console.dir(g_PokeSpeciDat);
+
+    // console.dir(Object.values(g_PokeSpeciDat));
+
+    // console.log(g_PokeSpeciDat[0]);
+    // console.dir(g_PokeSpeciDat[0]);
+
+    // console.log(g_PokeSpeciDat.length);
+    // console.log(Object(g_PokeSpeciDat[0]));
+    // console.log(Object.keys(g_PokeSpeciDat));
+    // console.log(Object.values(g_PokeSpeciDat));
+    // console.log(Object.keys(g_PokeSpeciDat));
+    // console.log(Object.keys(g_PokeSpeciDat).length);
+    // console.log(Object.values(g_PokeSpeciDat));
+    // console.log(Object.values(g_PokeSpeciDat).length);
+
+    // image url >>> g_PokeDatArr[i].sprites.other.dream_world.frontdefault
+    // example species.flavortextentries
+    // name names
+    // const g_PokeDescription = [];
+    // for(let i = 0; i < g_PokeSpeciDat[0].flavor_text_entries.length; i++) {
+    //   if(g_PokeSpeciDat[0].flavor_text_entries[i].language.name === "ko") {
+    //     g_PokeDescription.push(g_PokeSpeciDat[0].flavor_text_entries[i].flavor_text);
+    //   }
+    // }
+  </script>
+</body>
+
+</html>

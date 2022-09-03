@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Document</title>
+
+    <style>
+      #root {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-content: center;
+        justify-content: center;
+        align-items: center;
+      }
+
+      #main_div {
+        width: 100vw;
+        height: 60vh;
+        background-color: green;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-content: center;
+        justify-content: center;
+        align-items: center;
+      }
+
+      #flex_div {
+        width: 50vw;
+        height: 45vh;
+        background-color: yellow;
+      }
+
+      #move_item {
+        background-color: blueviolet;
+        width: 30vw;
+        height: 45vh;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-content: center;
+        justify-content: center;
+        align-items: center;
+      }
+      .content {
+        background-color: aliceblue;
+        width: 10vw;
+        height: 30vh;
+        margin: 10px;
+      }
+
+      .content > div:nth-child(1) {
+        background-color: pink;
+        width: 8vw;
+        height: 10vh;
+
+        /* no.1 - 좌측아래로 */
+        display: flex;
+        flex-direction: row;
+        align-content: center;
+        justify-content: flex-start;
+        align-items: flex-end;
+      }
+
+      .content > div:nth-child(2) {
+        background-color: aquamarine;
+        width: 8vw;
+        height: 3vh;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-content: center;
+        justify-content: space-around;
+        align-items: center;
+      }
+
+      .content > div:nth-child(2) > div {
+        font-size: 2px;
+      }
+
+      .content > div:nth-child(2) > div:nth-child(2) {
+        width: 30px;
+        height: 2px;
+        background-color: black;
+      }
+
+      .content > div:nth-child(3) {
+        display: flex;
+      }
+
+      .content > div:nth-child(3) > div {
+        font-size: 1px;
+      }
+
+      .arrow1 {
+        background-color: white;
+        width: 5vw;
+        height: 8vh;
+        font-size: 4em;
+        text-align: center;
+        margin-right: 128px;
+      }
+
+      .arrow2 {
+        background-color: white;
+        width: 5vw;
+        height: 8vh;
+        font-size: 4em;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root">
+      <div id="main_div">
+        <!-- 화살표1 -->
+        <div class="arrow1"><</div>
+
+        <div id="flex_div">
+          <div id="move_item">
+            <!-- content -->
+            <div class="content">
+              <div>
+                <div>no.1</div>
+              </div>
+
+              <!-- pokemon -->
+              <div class="pokemon">
+                <div class="pokemon_name">포켓몬</div>
+                <div class="border_bar"></div>
+              </div>
+
+              <!-- lorem -->
+              <div class="lorem">
+                <div>
+                  Lorem ipsum dolor sit, amet consectetur adipisicing elit. In
+                  accusantium veniam placeat, quaerat, voluptatem qui, natus
+                  laboriosam ipsum debitis temporibus ratione saepe nulla
+                  aliquid quis consectetur ut dolorum facere sed?
+                </div>
+              </div>
+            </div>
+            <!-- content -->
+            <div class="content">
+              <div>
+                <div>no.1</div>
+              </div>
+
+              <!-- pokemon -->
+              <div class="pokemon">
+                <div class="pokemon_name">포켓몬</div>
+                <div class="border_bar"></div>
+              </div>
+
+              <!-- lorem -->
+              <div class="lorem">
+                <div>
+                  Lorem ipsum dolor sit, amet consectetur adipisicing elit. In
+                  accusantium veniam placeat, quaerat, voluptatem qui, natus
+                  laboriosam ipsum debitis temporibus ratione saepe nulla
+                  aliquid quis consectetur ut dolorum facere sed?
+                </div>
+              </div>
+            </div>
+
+            <!-- content -->
+            <div class="content">
+              <div>
+                <div>no.1</div>
+              </div>
+
+              <!-- pokemon -->
+              <div class="pokemon">
+                <div class="pokemon_name">포켓몬</div>
+                <div class="border_bar"></div>
+              </div>
+
+              <!-- lorem -->
+              <div class="lorem">
+                <div>
+                  Lorem ipsum dolor sit, amet consectetur adipisicing elit. In
+                  accusantium veniam placeat, quaerat, voluptatem qui, natus
+                  laboriosam ipsum debitis temporibus ratione saepe nulla
+                  aliquid quis consectetur ut dolorum facere sed?
+                </div>
+              </div>
+            </div>
+            <!-- content -->
+            <div class="content">
+              <div>
+                <div>no.1</div>
+              </div>
+
+              <!-- pokemon -->
+              <div class="pokemon">
+                <div class="pokemon_name">포켓몬</div>
+                <div class="border_bar"></div>
+              </div>
+
+              <!-- lorem -->
+              <div class="lorem">
+                <div>
+                  Lorem ipsum dolor sit, amet consectetur adipisicing elit. In
+                  accusantium veniam placeat, quaerat, voluptatem qui, natus
+                  laboriosam ipsum debitis temporibus ratione saepe nulla
+                  aliquid quis consectetur ut dolorum facere sed?
+                </div>
+              </div>
+            </div>
+            <!-- content -->
+            <div class="content">
+              <div>
+                <div>no.1</div>
+              </div>
+
+              <!-- pokemon -->
+              <div class="pokemon">
+                <div class="pokemon_name">포켓몬</div>
+                <div class="border_bar"></div>
+              </div>
+
+              <!-- lorem -->
+              <div class="lorem">
+                <div>
+                  Lorem ipsum dolor sit, amet consectetur adipisicing elit. In
+                  accusantium veniam placeat, quaerat, voluptatem qui, natus
+                  laboriosam ipsum debitis temporibus ratione saepe nulla
+                  aliquid quis consectetur ut dolorum facere sed?
+                </div>
+              </div>
+            </div>
+
+            <!-- 화살표2 -->
+          </div>
+        </div>
+        <div class="arrow2">></div>
+      </div>
+    </div>
+  </body>
+
+  <script>
+    // for (let i = 0; i < 5; i++) {
+    //   const newDiv = document.createElement("div");
+    //   let move_item = document.getElementById("move_item");
+    //   let content = document.getElementsByClassName("content");
+    //   console.log("a");
+    //   console.log(content);
+    //   let pindiv = document.createComment("div");
+    //   move_item.appendChild(newDiv);
+
+    //   console.dir(move_item);
+    //   move_item.children[i].className = "content";
+    //   content.children[i].appendChild(pindiv);
+
+    //   // document.getElementById("myTable").appendChild(y);
+    // }
+
+    // for문 하나 더 만들어서 pink 만들기
+
+    // < ------------slider ---------------------->
+
+    // move_item  = carouselSlide
+    const carouselSlide = document.getElementById("move_item");
+    console.log(carouselSlide);
+
+    // content = carouselContetns
+    const carouselContents = document.getElementsByClassName("content");
+    //  길이 6 ;
+    console.log(carouselContents.length);
+
+    const prevBtn = document.getElementsByClassName("arrow1");
+    const nextBtn = document.getElementsByClassName("arrow2");
+    console.log(nextBtn);
+    console.log(prevBtn);
+
+    let counter = 1;
+    const size = carouselContents[0].clientWidth;
+    carouselSlide.style.transform = "translateX(" + -size * counter + "px)";
+
+    console.log(counter);
+
+    prevBtn[0].addEventListener("click", () => {
+      if (counter >= carouselContents.length - 1) return;
+      //   ease -움직임에 (가속,감속)효과를 주는 속성
+      carouselSlide.style.transition = "transform 0.3s ease-in-out";
+      counter++;
+      //이동
+      carouselSlide.style.transform = "translateX(" + -size * counter + "px)";
+    });
+
+    nextBtn[0].addEventListener("click", () => {
+      // if (counter <= 0) return;
+      carouselSlide.style.transition = "transform 0.3s ease-in-out";
+      counter--;
+      carouselSlide.style.transform = "translateX(" + -size * counter + "px)";
+    });
+    console.log(carouselContents.length);
+
+    carouselSlide.addEventListener("transitionend", function () {
+      if (carouselContents[counter].id === "lastClone") {
+        carouselSlide.style.transition = "none";
+        counter = carouselContents.length - 2;
+        carouselSlide.style.transform = "translateX(" + -size * counter + "px)";
+      }
+      if (carouselContents[counter].id === "firstClone") {
+        carouselSlide.style.transition = "none";
+        counter = carouselContents.length - counter;
+        carouselSlide.style.transform = "translateX(" + -size * counter + "px)";
+      }
+    });
+  </script>
+</html>

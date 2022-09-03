@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- <div id =root>
+     <div backgroundimage =card>
+      <div ><img src=item></img></div>
+     </div>
+     </div> -->
+
+    <script>
+      const body = window.document.body;
+      const root = document.createElement("div");
+      body.appendChild(root);
+      root.id = "root";
+      console.dir(root);
+
+      let img = document.createElement("img");
+      const number = document.createElement("div");
+      const name = document.createElement("div");
+      const textArea = document.createElement("div");
+      const innerdiv = document.createElement("div");
+      const divimage = document.createElement("div");
+
+      root.appendChild(divimage);
+      divimage.appendChild(innerdiv);
+      root.appendChild(textArea);
+      root.appendChild(name);
+      root.appendChild(number);
+
+      const g_PokeSpeciDat = [];
+      const text = [];
+
+      const loadPoDatSpecies = function (num, save) {
+        const url = `https://pokeapi.co/api/v2/pokemon-species/${num}/`;
+        const request = new XMLHttpRequest();
+        console.log(request);
+        request.open("GET", url);
+        request.responseType = "json";
+        request.send();
+        request.addEventListener("load", () => {
+          const l_POKE_API = request.response;
+          //g_PokeSpeciDat.push(l_POKE_API);
+          JSON.parse(JSON.stringify(l_POKE_API));
+          console.log("aaaa");
+          console.log(l_POKE_API);
+          // console.log(id);
+          console.log(loadPokeData(1));
+
+          for (let i = 0; l_POKE_API.names.length; i++) {
+            if (l_POKE_API.names[i].language.name === "ko") {
+              console.log(l_POKE_API.names[i].name);
+              name.textContent = l_POKE_API.names[i].name;
+              break;
+            }
+          }
+
+          for (let i = 0; l_POKE_API.flavor_text_entries.length; i++) {
+            if (l_POKE_API.flavor_text_entries[i].language.name === "ko") {
+              // console.log("Aaaaaaaaaaaaaa");
+              console.log(l_POKE_API.flavor_text_entries[i].flavor_text);
+              textArea.textContent = l_POKE_API.flavor_text_entries[i].flavor_text;
+              break;
+            }
+          }
+
+          console.log("콘솔 삼번");
+          console.log(l_POKE_API.id);
+          console.log("콘솔삼번은" + l_POKE_API.id + " 입니다.");
+          number.innerText = `No. ${l_POKE_API.id}`;
+        });
+      };
+
+      const loadPokeData = function (num, save) {
+        const url = `https://pokeapi.co/api/v2/pokemon/${num}`;
+        const request = new XMLHttpRequest();
+        request.open("GET", url);
+        request.responseType = "json";
+        request.send();
+        request.addEventListener("load", () => {
+          const l_POKE_API = request.response;
+
+          const item = l_POKE_API.sprites.other.dream_world.front_default;
+          console.log(item);
+          // save.push(l_POKE_API);
+          console.dir(divimage);
+
+          // 배경 -카드
+          divimage.style.backgroundSize = "cover";
+          divimage.style.width = "500px";
+          divimage.style.height = "700px";
+          divimage.style.display = "flex";
+          divimage.style.backgroundImage = "url('./card.png')";
+
+          // 포켓몬 이미지 넣을 div
+
+          innerdiv.style.backgroundColor = "green";
+          innerdiv.style.width = "20vw";
+          innerdiv.style.height = "20vh";
+          innerdiv.appendChild(img);
+          console.log(img);
+          img.src = item;
+          img.style.width = "100%";
+          // const divimg = document.createElement("img");
+        });
+      };
+
+      //  roof로 돌려주기
+      // const g_pokeDatArr = [];
+      // const loopSave = function (num) {
+      //   for (let i = 0; i <= num; i++) {
+      //     if (i === 0) {
+      //       continue;
+      //     } else {
+      //       loadPokeData([i], g_pokeDatArr);
+      //     }
+      //   }
+      // };
+
+      // loopSave(100);
+      // console.log(g_pokeDatArr);
+
+      loadPoDatSpecies(1);
+    </script>
+  </body>
+</html>
